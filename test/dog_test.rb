@@ -31,4 +31,8 @@ class PetTest < Minitest::Test
     assert_equal true, @sodie.small_breed
     assert_equal false, @max.small_breed
   end
+
+  def test_pet_starts_with_zero_walks
+    assert_equal 0, @sodie.walks
+  end
 end
