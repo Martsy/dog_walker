@@ -35,4 +35,20 @@ class PetTest < Minitest::Test
   def test_pet_starts_with_zero_walks
     assert_equal 0, @sodie.walks
   end
+
+  def test_pet_can_add_a_walk
+    @sodie.walk
+    assert_equal 1, @sodie.walks
+  end
+
+  def test_pet_can_add_another_walk
+    @sodie.walk
+    @sodie.walk
+    assert_equal 2, @sodie.walks
+  end
+
+  def test_pet_can_bark
+    assert_equal "Yap!", @sodie.bark
+    assert_equal "ROOF", @max.bark
+  end
 end
