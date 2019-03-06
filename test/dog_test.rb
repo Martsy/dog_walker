@@ -13,13 +13,13 @@ class PetTest < Minitest::Test
   end
 
   def test_pet_has_a_name
-    assert_equal "Max", @max.name
     assert_equal "Sodie", @sodie.name
+    assert_equal "Max", @max.name
   end
 
   def test_pet_has_an_age
-    assert_equal 11, @max.age
     assert_equal 9, @sodie.age
+    assert_equal 11, @max.age
   end
 
   def test_pet_has_a_breed
