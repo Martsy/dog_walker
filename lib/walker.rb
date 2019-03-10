@@ -1,10 +1,12 @@
+require 'set' # prevents duplicates
+
 class Walker
   attr_reader  :name, :poop_bags, :clients
 
   def initialize(walker_info)
     @name      = walker_info[:name]
     @poop_bags = walker_info[:poop_bags]
-    @clients   = []
+    @clients   = [] # .to_set
   end
 
   def add_client(dogs)
@@ -23,11 +25,9 @@ class Walker
     @clients.select { |dog| dog.age < 3 }
   end
 
-
   def elderly_clients
    @clients.select { |dog| dog.age > 3 }
   end
-
 
   def client_names
     @clients.collect { |dog| dog.name }
@@ -42,6 +42,11 @@ class Walker
     @clients.select do |dog| if dog.breed == breed
       return dog.name
       end
+    end
+  end
+
+  def clients_organized_by_breed
+    @clients.group_by do |dog| dog.breed
     end
   end
 end

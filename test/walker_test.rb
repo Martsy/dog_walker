@@ -79,4 +79,12 @@ class WalkerTest < Minitest::Test
     @walker.add_client(@oscar)
     assert_equal "Max", @walker.specific_breed_of_client("Cocker Spaniel")
   end
+
+  def test_clients_organized_by_breed
+    @walker.add_client(@sodie)
+    @walker.add_client(@max)
+    @walker.add_client(@oscar)
+    expected = { "Shih-Tzu" => [@sodie, @oscar], "Cocker Spaniel" => [@max] }
+    assert_equal expected, @walker.clients_organized_by_breed
+  end
 end
