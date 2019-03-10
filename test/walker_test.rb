@@ -9,7 +9,6 @@ class WalkerTest < Minitest::Test
     @sodie  = Dog.new("Sodie", 9, "Shih-Tzu", true)
     @max    = Dog.new("Max", 11, "Cocker Spaniel", false)
     @oscar  = Dog.new("Oscar", 1, "Shih-Tzu", true)
-    @joey   = @sodie.walk
   end
 
   def test_walker_class_exists
@@ -50,13 +49,34 @@ class WalkerTest < Minitest::Test
     @walker.add_client(@sodie)
     @walker.add_client(@max)
     @walker.add_client(@oscar)
-    assert_equal ["Oscar"], @walker.puppy_clients(@oscar)
+    assert_equal [@oscar], @walker.puppy_clients
   end
 
   def test_walker_can_list_all_elderly_clients
     @walker.add_client(@sodie)
     @walker.add_client(@max)
     @walker.add_client(@oscar)
-    assert_equal ["Sodie","Max"], @walker.elderly_clients(@sodie, @max)
+    assert_equal [@sodie, @max], @walker.elderly_clients
+  end
+
+  def test_list_all_client_names
+    @walker.add_client(@sodie)
+    @walker.add_client(@max)
+    @walker.add_client(@oscar)
+    assert_equal ["Sodie", "Max", "Oscar"], @walker.client_names
+  end
+
+  def test_client_names_ending_in_y_or_ie
+    @walker.add_client(@sodie)
+    @walker.add_client(@max)
+    @walker.add_client(@oscar)
+    assert_equal "Sodie", @walker.client_names_ending_in_y_or_ie
+  end
+
+  def test_specific_breed_of_client
+    @walker.add_client(@sodie)
+    @walker.add_client(@max)
+    @walker.add_client(@oscar)
+    assert_equal "Max", @walker.specific_breed_of_client("Cocker Spaniel")
   end
 end
